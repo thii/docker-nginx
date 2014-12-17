@@ -11,8 +11,8 @@ $ docker pull thii/nginx
 ## Deploying to AWS Elastic Beanstalk
 ```bash
 $ eb init
-$ eb start
-$ git aws.push
+$ eb config
+$ eb deploy
 ```
 
 ## License
