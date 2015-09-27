@@ -5,12 +5,17 @@ RUN echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" > /etc/a
 RUN echo "deb-src http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" >> /etc/apt/sources.list.d/nginx-stable-trusty.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
 
+ENV NGINX_VERSION 1.8.0-1+trusty1
+
 RUN apt-get update
 RUN apt-get -y upgrade
 
-# nginx, PHP, memcached...
+# Install nginx
+RUN apt-get install -y ca-certificates nginx=${NGINX_VERSION}
+
+# PHP, memcached...
 RUN \
-  apt-get install -y nginx \
+  apt-get install -y \
   supervisor \
   curl \
   wget \
