@@ -5,7 +5,7 @@ RUN echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" > /etc/a
 RUN echo "deb-src http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" >> /etc/apt/sources.list.d/nginx-stable-trusty.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
 
-ENV NGINX_VERSION 1.8.1-1+trusty0
+ENV NGINX_VERSION 1.10.1-0+trusty0
 
 RUN apt-get update
 RUN apt-get -y upgrade
