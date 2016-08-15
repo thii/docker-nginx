@@ -41,7 +41,7 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 # Create required directories
 RUN mkdir -p /var/log/supervisor
-RUN mkdir -p /var/run/php7.0-fpm
+RUN mkdir -p /run/php
 
 # Add configuration files
 ADD conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
