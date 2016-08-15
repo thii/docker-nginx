@@ -1,11 +1,14 @@
 FROM ubuntu:trusty
 
+ENV NGINX_VERSION 1.10.1-0+trusty0
+
 # Install packages
 RUN echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" > /etc/apt/sources.list.d/nginx-stable-trusty.list
 RUN echo "deb-src http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" >> /etc/apt/sources.list.d/nginx-stable-trusty.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
-
-ENV NGINX_VERSION 1.10.1-0+trusty0
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" > /etc/apt/sources.list.d/ondrej-php-trusty.list
+RUN echo "deb-src http://ppa.launchpad.net/ondrej/php/ubuntu trusty main" >> /etc/apt/sources.list.d/ondrej-php-trusty.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
 
 RUN apt-get update
 RUN apt-get -y upgrade
@@ -21,13 +24,14 @@ RUN \
   wget \
   tar \
   memcached \
-  php5-fpm \
-  php5-mysql \
-  php5-mcrypt \
-  php5-gd \
-  php5-memcached \
-  php5-memcache \
-  php5-curl
+  php7.0 \
+  php7.0-fpm \
+  php7.0-mysql \
+  php7.0-mcrypt \
+  php7.0-gd \
+  php7.0-memcached \
+  php7.0-memcache \
+  php7.0-curl
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
@@ -37,7 +41,7 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 # Create required directories
 RUN mkdir -p /var/log/supervisor
-RUN mkdir -p /var/run/php5-fpm
+RUN mkdir -p /var/run/php7.0-fpm
 
 # Add configuration files
 ADD conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
